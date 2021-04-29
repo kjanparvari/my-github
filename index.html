@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Github</title>
+    <link rel="icon" href="img/favicon.jpg">
+    <link rel="stylesheet" href="./styles/reset.css">
+    <link rel="stylesheet" href="./styles/style.css">
+    <script src="js/script.js"></script>
+    <title>Title</title>
+</head>
+<body>
+
+<!-- Middle container -->
+<section class="outer-box">
+
+    <section class="container error-container disabled" id="errorContainer">
+        <div class="error">
+            <div class="error__logo">
+                <img src="./img/Error.webp" width="48" height="48" alt="">
+                <span style="margin-left: 2%">Error:</span>
+            </div>
+
+            <p id="errorMsg">
+                error just happened
+            </p>
+        </div>
+
+
+    </section>
+    <section class="container info-container disabled" id="infoContainer">
+        <div class="info__upper">
+            <img src="./img/favicon.jpg" id="avatar" class="avatar" alt="Avatar">
+            <ul class="user-info">
+                <li class="info__item">
+                    <span class="info__item__label">Name: </span>
+                    <span id="name">Sample Name</span>
+                </li>
+                <li class="info__item">
+                    <span class="info__item__label">Blog: </span>
+                    <a id="blog" href="https://kjsoft.ir">Sample Blog Address</a>
+                </li>
+                <li class="info__item">
+                    <span class="info__item__label">Location: </span>
+                    <span id="location">Sample Location</span>
+                </li>
+                <li class="info__item">
+                    <span class="info__item__label">Fav. Lan. : </span>
+                    <span id="favLan">Sample Language</span>
+                </li>
+            </ul>
+        </div>
+        <div class="bio-container">
+            <div>bio:</div>
+            <div id="bio">
+                <p class="bio__line">bio bio bio bio,</p>
+                <p class="bio__line">bio bio bio bio,</p>
+                <p class="bio__line">bio bio bio bio,</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="container form-container">
+        <div class="form" id="form">
+            <p class="form__text">
+                Enter Username to Fetch User's Github Information
+            </p>
+            <div class="username">
+                <label for="username" class="username__label"> </label>
+                <input type="text" class="username__text-box" id="username" placeholder="Username" required/>
+            </div>
+
+            <input type="submit" value="Get Info" class="submit-button" id="submitButton"/>
+        </div>
+
+    </section>
+
+</section>
+<script src="js/script.js"></script>
+</body>
+</html>
