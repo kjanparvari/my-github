@@ -2,35 +2,43 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <!--    setting document title and fav icon -->
     <title>My Github</title>
     <link rel="icon" href="img/favicon.jpg">
+    <!--    importing styles    -->
     <link rel="stylesheet" href="./styles/reset.css">
     <link rel="stylesheet" href="./styles/style.css">
+    <!--    importing script    -->
     <script src="js/script.js"></script>
-    <title>Title</title>
 </head>
 <body>
 
-<!-- Middle container -->
+<!--    the wrapper container   -->
 <section class="outer-box">
 
+    <!--   the error section   -->
+    <!--   its invisible by default-->
     <section class="container error-container disabled" id="errorContainer">
         <div class="error">
             <div class="error__logo">
+                <!-- error logo-->
                 <img src="./img/Error.webp" width="48" height="48" alt="">
                 <span style="margin-left: 2%">Error:</span>
             </div>
-
+            <!--  error message   -->
             <p id="errorMsg">
                 error just happened
             </p>
         </div>
-
-
     </section>
+
+    <!--    info section-->
+    <!--    its invisible by default-->
     <section class="container info-container disabled" id="infoContainer">
         <div class="info__upper">
+            <!--            avatar-->
             <img src="./img/favicon.jpg" id="avatar" class="avatar" alt="Avatar">
+            <!--            user info-->
             <ul class="user-info">
                 <li class="info__item">
                     <span class="info__item__label">Name: </span>
@@ -50,6 +58,7 @@
                 </li>
             </ul>
         </div>
+        <!--    bio-->
         <div class="bio-container">
             <div>bio:</div>
             <div id="bio">
@@ -60,19 +69,20 @@
         </div>
     </section>
 
+    <!--    form container-->
     <section class="container form-container">
-        <div class="form" id="form">
+        <div>
             <p class="form__text">
                 Enter Username to Fetch User's Github Information
             </p>
+            <!--    text box and its label-->
             <div class="username">
                 <label for="username" class="username__label"> </label>
                 <input type="text" class="username__text-box" id="username" placeholder="Username" required/>
             </div>
-
+            <!--  submit button-->
             <input type="submit" value="Get Info" class="submit-button" id="submitButton"/>
         </div>
-
     </section>
 
 </section>
