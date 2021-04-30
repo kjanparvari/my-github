@@ -15,6 +15,7 @@
     const infoContainer = document.getElementById("infoContainer");
     const errorContainer = document.getElementById("errorContainer");
     const errorPara = document.getElementById("errorMsg");
+    const alertBox = document.getElementById("alert");
 
     // attach handler to submit button
     // it reads username from text box and calls getInfo() function to put values in the above elements
@@ -41,8 +42,12 @@
                 const url = `https://api.github.com/users/${username}`;
                 // sending request to the url to get the info
                 await fetch(url).then(async (response) => {
+                    // if there was no internet connection
+                    if (response === null) {
+                        showError('An Error Happened While Establishing Connection');
+                    }
                     // if there was not such user
-                    if (response.status === 404) {
+                    else if (response.status === 404) {
                         showError(`Can Not Find Such User "${username}"`)
                     }
                     // if some other client or server error happened
@@ -76,12 +81,14 @@
             } catch (e) {
                 // the above scope is about getting data from github and showing them
                 // so if something goes wrong following message will be shown on screen
-                showError('An Error Happened While Establishing Connection')
+                showError('An Error Happened While Establishing Connection');
             }
         } else {
             // if data was cached, we don't send request anymore.
-            console.log("found in local storage.")
-            showInfo(JSON.parse(cached))
+            console.log("found in local storage.");
+            showInfo(JSON.parse(cached));
+            // showing an alert that local storage is used.
+            showAlert("Used Local Storage. This User Was Searched Before.");
         }
     }
     /**
@@ -93,8 +100,12 @@
         try {
             // sending request to get repositories array
             return await fetch(reposLink).then(async (response) => {
+                // if there was no internet connection
+                if (response === null) {
+                    showError('An Error Happened While Establishing Connection');
+                }
                 // if some client or server error happens
-                if (response.status >= 400)
+                else if (response.status >= 400)
                     return " - ";
                 // if request was successful
                 else if (response.status === 200) {
@@ -116,7 +127,7 @@
                     let cnt = 0;
                     let i = 0;
                     // checking top 5 repositories and counting used languages
-                    while (cnt <= 5) {
+                    while (cnt <= 4) {
                         const lan = repos[i].language;
                         if (lan !== null) {
                             if (lan in languages) {
@@ -124,17 +135,21 @@
                             } else {
                                 languages[lan] = 1;
                             }
-                            cnt++;
+                            // cnt++;
                         }
+                        cnt++;
                         i++;
                         if (i >= repos.length)
                             break
                     }
-                    console.log(languages)
                     // finding the language which is used most
-                    const favLan = Object.keys(languages).reduce((a, b) => languages[a] > languages[b] ? a : b);
-                    console.log(`favLan: ${favLan}`)
-                    return favLan;
+                    const maxLan = Object.keys(languages).reduce((a, b) => languages[a] > languages[b] ? a : b);
+                    let favLan = ""
+                    Object.keys(languages).forEach((key) => {
+                        if (languages[key] === languages[maxLan])
+                            favLan += key + ", "
+                    })
+                    return favLan.slice(0, -2);
                 }
             });
         } catch (e) {
@@ -148,11 +163,14 @@
      * @param data
      */
     const showInfo = (data) => {
-        // making error section invisible
-        infoContainer.classList.remove("disabled");
         // making info section visible
+        infoContainer.classList.remove("disabled");
+        // making error section invisible
         if (!errorContainer.classList.contains("disabled"))
             errorContainer.classList.add("disabled");
+        // making alert box invisible
+        if (!alertBox.classList.contains("disabled"))
+            alertBox.classList.add("disabled");
         // putting data in elements
         nameLabel.innerHTML = data["name"];
         blogLabel.innerHTML = data["blog"];
@@ -177,12 +195,25 @@
      * @param msg
      */
     const showError = (msg) => {
-        // making info section invisible
-        errorContainer.classList.remove("disabled");
         // making error section visible
+        errorContainer.classList.remove("disabled");
+        // making info section invisible
         if (!infoContainer.classList.contains("disabled"))
             infoContainer.classList.add("disabled");
+        // making alert box invisible
+        if (!alertBox.classList.contains("disabled"))
+            alertBox.classList.add("disabled");
         // putting the error message in the error section
         errorPara.innerHTML = msg;
     }
+
+    /**
+     * shows a disappearing alert box containing the input message
+     * @param msg
+     */
+    const showAlert = (msg) => {
+        alertBox.innerHTML = msg;
+        alertBox.classList.remove("disabled");
+    }
+
 })()

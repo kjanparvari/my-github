@@ -26,6 +26,21 @@ body {
 }
 
 /*
+    for the disappearing alert box which alerts when we use local storage
+    some kinda blue background with black text color
+    absolute position at the bottom of the page (50px)
+    10px border radius for the corners
+*/
+.alert {
+    background-color: var(--info);
+    color: black;
+    position: absolute;
+    bottom: 50px;
+    padding: 20px 60px;
+    border-radius: 10px;
+}
+
+/*
     for those 2 transparent sections on the page
     putting a black background and alpha value equal to 0.6 to make it transparent
     a purple transparent box shadow
@@ -178,8 +193,8 @@ body {
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
     cursor: pointer;
     color: white;
-    background-color: #28a745;
-    border: 1px solid #28a745;
+    background-color: var(--success);
+    border: 1px solid var(--success);
 }
 
 /*
@@ -255,7 +270,7 @@ body {
 }
 
 /*
-    disabled class in order to make error section or info section invisible by setting display to none
+    disabled class in order to make error section, info section and the alert box invisible by setting display to none
 */
 .disabled {
     display: none;
