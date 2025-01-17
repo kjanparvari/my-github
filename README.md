@@ -22,4 +22,4 @@ This project showcases the use of JavaScript for interacting with external APIs 
 This project was developed as part of the **Internet Engineering course** at **Amirkabir University of Technology (AUT)**.  
 
 ## License  
-This project is licensed under the MIT License.   
+This project is licensed under the AUT License.   
